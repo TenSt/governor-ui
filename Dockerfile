@@ -5,5 +5,6 @@ RUN npm install -g sirv-cli
 WORKDIR /app
 
 COPY public ./
+COPY package.json ./
 
-CMD ["sirv", "public" "--single" "--host" "governor.tenst.ml"]
+CMD ["npm", "run", "start"]
