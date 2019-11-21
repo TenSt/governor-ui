@@ -2,8 +2,11 @@ FROM node
 
 WORKDIR /app
 
-COPY public ./
+COPY public ./public
 COPY package.json ./
+
+RUN pwd
+RUN ls -lsa
 
 RUN npm install
 
