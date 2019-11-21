@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: governor-ui
+  labels:
+    app: governor-ui
+    version: "v1"
+  annotations:
+    version: "v1"
+  namespace: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: governor-ui
+  template:
+    metadata: 
+      labels: 
+        app: governor-ui
+    spec:
+      containers:
+      - name: governor-ui
+        image: IMG
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    prometheus.io/scrape: "true"
+  labels:
+    component: governor-ui
+  name: governor-ui
+  namespace: mongo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: governor-ui
+  sessionAffinity: None
+  type: ClusterIP
