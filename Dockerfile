@@ -1,10 +1,10 @@
 FROM node
 
-RUN npm install -g sirv-cli
-
 WORKDIR /app
 
 COPY public ./
 COPY package.json ./
+
+RUN npm install
 
 CMD ["npm", "run", "start"]
